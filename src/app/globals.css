@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
   --green: #00A85A;
@@ -8,11 +8,11 @@
   --navy: #0D2F6B;
   --bg: #F2EDE4;
   --ink: #1A1A18;
-  --dim: rgba(26,26,24,0.5);
+  --dim: rgba(26,26,24,0.75);
   --faint: rgba(26,26,24,0.12);
   --dark-bg: #0C0C0C;
   --lt: #F2EDE4;
-  --lt-dim: rgba(242,237,228,0.6);
+  --lt-dim: rgba(242,237,228,0.85);
   --lt-faint: rgba(242,237,228,0.25);
 }
 
@@ -30,7 +30,7 @@
   --color-lt-dim: var(--lt-dim);
   --color-lt-faint: var(--lt-faint);
   --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-mono: 'Inter', sans-serif;
   --font-sans: 'Inter', sans-serif;
 }
 

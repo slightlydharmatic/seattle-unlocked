@@ -1,26 +1,16 @@
-import Link from "next/link";
 import { fetchEvents } from "@/lib/sheets";
-import { placeholderImg } from "@/lib/sheets";
 import { STATS } from "@/lib/constants";
-import { BigCard, EventRow } from "@/components/EventCard";
-import Marquee from "@/components/Marquee";
+import ThisWeekInSeattle from "@/components/ThisWeekInSeattle";
 import NewsletterForm from "@/components/NewsletterForm";
 
 export const revalidate = 300;
 
 export default async function HomePage() {
   const events = await fetchEvents();
-  const picks = events.filter((e) => e.pick).slice(0, 3);
-
-  while (picks.length < 3) {
-    const next = events.find((e) => !picks.includes(e));
-    if (next) picks.push(next);
-    else break;
-  }
 
   return (
     <div>
-      {/* HERO */}
+      {/* HERO - Kerry Park video */}
       <section className="min-h-screen flex flex-col justify-between relative px-5 md:px-[5vw] xl:px-[60px] pt-24 pb-[60px] overflow-hidden" style={{ background: "var(--dark-bg)" }}>
         <video
           autoPlay
@@ -56,70 +46,28 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <Marquee events={events} />
-
-      {/* PICKS */}
-      <section className="py-20 px-5 md:px-[5vw] xl:px-[60px] max-w-[1400px] mx-auto">
-        <div className="flex justify-between items-end mb-10">
-          <div>
-            <span className="font-mono text-[10px] text-green uppercase tracking-[0.15em]">Curated</span>
-            <h2 className="font-serif text-5xl italic font-normal text-ink m-0 mt-1 leading-none">This week&apos;s picks</h2>
-          </div>
-          <Link href="/events" className="font-mono text-[10px] text-blue no-underline uppercase tracking-[0.1em]">All events &rarr;</Link>
-        </div>
-        {picks.length >= 3 && (
-          <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-1 h-auto md:h-[600px] mb-1">
-            <BigCard event={picks[0]} />
-            <div className="grid grid-rows-2 gap-1">
-              <BigCard event={picks[1]} />
-              <BigCard event={picks[2]} />
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* EVENT LIST */}
-      <section className="px-5 md:px-[5vw] xl:px-[60px] pb-20 max-w-[1400px] mx-auto">
-        {events.slice(0, 8).map((e, i) => (
-          <EventRow key={e.id} event={e} idx={i + 1} />
-        ))}
-        <div className="mt-8 text-center">
-          <Link href="/events" className="inline-block font-mono text-[10px] text-blue bg-transparent border border-blue px-8 py-3.5 no-underline uppercase tracking-[0.12em] hover:bg-blue hover:text-white transition-colors">
-            View all events
-          </Link>
-        </div>
-      </section>
-
-      {/* PHOTO STRIP */}
-      <section className="py-[60px]" style={{ background: "var(--dark-bg)" }}>
-        <div className="font-mono text-[9px] text-lt-faint uppercase tracking-[0.15em] text-center mb-5">
-          Seattle through the lens of <span className="text-green">@ejimogu_</span>
-        </div>
-        <div className="flex gap-1 overflow-x-auto hide-scrollbar px-5 md:px-[5vw] xl:px-[60px]">
-          {["Blossoms", "Skyline", "Rainier", "Market", "Night", "Water"].map((label, i) => (
-            <div key={i} className="min-w-[300px] h-[220px] shrink-0 overflow-hidden">
-              <img src={placeholderImg(label, i * 50 + 100)} alt={label} className="w-full h-full object-cover" />
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* THIS WEEK IN SEATTLE */}
+      <ThisWeekInSeattle events={events} />
 
       {/* STATS */}
       <section className="flex flex-wrap border-y border-faint bg-bg">
         {STATS.map(({ number, label }, i) => (
-          <div key={i} className={`flex-1 min-w-[140px] py-10 px-6 text-center ${i < STATS.length - 1 ? "border-r border-faint" : ""}`}>
-            <div className="font-serif italic text-[44px] text-blue leading-none">{number}</div>
-            <div className="font-mono text-[9px] text-dim mt-2 uppercase tracking-[0.12em]">{label}</div>
+          <div
+            key={i}
+            className={`flex-1 min-w-[160px] py-14 md:py-16 px-6 text-center ${i < STATS.length - 1 ? "border-r border-faint" : ""}`}
+          >
+            <div className="font-serif italic text-[56px] md:text-[80px] text-blue leading-none">{number}</div>
+            <div className="font-sans font-bold text-[12px] md:text-[13px] text-ink mt-3 uppercase tracking-[0.14em]">{label}</div>
           </div>
         ))}
       </section>
 
       {/* NEWSLETTER */}
-      <section className="py-20 px-5 max-w-[700px] mx-auto text-center">
-        <h2 className="font-serif text-[40px] italic font-normal text-ink m-0 mb-2.5 leading-[1.1]">Get the inside track</h2>
-        <p className="font-sans text-sm text-dim m-0 mb-7">Weekly event drops. Local stories. The stuff your algorithm won&apos;t show you.</p>
+      <section className="py-24 px-5 max-w-[720px] mx-auto text-center">
+        <h2 className="font-sans font-bold text-4xl md:text-5xl text-ink leading-[1.05] tracking-[-0.015em] mb-3">Get the inside track</h2>
+        <p className="font-sans text-base md:text-lg text-dim mb-8 max-w-[520px] mx-auto leading-relaxed">Weekly event drops and local stories, straight to your inbox.</p>
         <NewsletterForm className="max-w-[460px] mx-auto" />
-        <p className="font-mono text-[9px] text-dim mt-3 uppercase tracking-[0.1em]">1,600+ subscribers / 71% open rate / no spam ever</p>
+        <p className="font-sans font-bold text-[10px] text-dim mt-4 uppercase tracking-[0.14em]">1,600+ subscribers / 71% open rate / no spam</p>
       </section>
     </div>
   );
