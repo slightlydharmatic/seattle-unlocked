@@ -11,7 +11,6 @@ export const revalidate = 300;
 export default async function HomePage() {
   const events = await fetchEvents();
   const picks = events.filter((e) => e.pick).slice(0, 3);
-  const heroImg = placeholderImg("Seattle at dusk", 220, 200);
 
   while (picks.length < 3) {
     const next = events.find((e) => !picks.includes(e));
@@ -22,25 +21,37 @@ export default async function HomePage() {
   return (
     <div>
       {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-end relative px-5 md:px-[5vw] xl:px-[60px] pb-[60px]" style={{ background: "var(--dark-bg)" }}>
-        <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ opacity: 0.7 }} />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(12,12,12,0.6) 0%, rgba(12,12,12,0.95) 80%)" }} />
-        <div className="relative max-w-[1400px] mx-auto w-full">
-          <div className="mb-10">
-            <h1 className="font-serif italic font-normal text-lt leading-[0.95] m-0" style={{ fontSize: "clamp(56px, 10vw, 140px)" }}>Seattle</h1>
-            <div className="flex items-baseline gap-4 flex-wrap">
-              <h1 className="font-serif italic font-normal leading-[0.95] m-0" style={{ fontSize: "clamp(56px, 10vw, 140px)", color: "transparent", WebkitTextStroke: "1.5px var(--green)" }}>Unlocked</h1>
-              <span className="font-mono text-[11px] text-lt-dim uppercase tracking-[0.12em]">Free events &amp; local stories</span>
+      <section className="min-h-screen flex flex-col justify-between relative px-5 md:px-[5vw] xl:px-[60px] pt-24 pb-[60px] overflow-hidden" style={{ background: "var(--dark-bg)" }}>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/kerry-park-poster.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/kerry-park.webm" type="video/webm" />
+          <source src="/kerry-park.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.55) 100%)" }} />
+        <div className="relative max-w-[1400px] mx-auto w-full flex justify-end" style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}>
+          <div className="text-right">
+            <h1 className="font-serif italic font-normal text-white leading-[0.95] m-0" style={{ fontSize: "clamp(56px, 10vw, 140px)" }}>Seattle</h1>
+            <div className="flex items-baseline gap-4 flex-wrap justify-end">
+              <span className="font-mono text-[11px] text-white/80 uppercase tracking-[0.12em]">Free events &amp; local stories</span>
+              <h1 className="font-serif italic font-normal text-white leading-[0.95] m-0" style={{ fontSize: "clamp(56px, 10vw, 140px)" }}>Unlocked</h1>
             </div>
           </div>
+        </div>
+        <div className="relative max-w-[1400px] mx-auto w-full" style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-end mb-12">
-            <p className="font-sans text-base text-lt-dim leading-relaxed max-w-[380px] m-0">
-              The things worth doing in this city aren&apos;t behind a paywall. We find them. You show up.
+            <p className="font-sans text-base text-white/90 leading-relaxed max-w-[380px] m-0">
+              Let&apos;s discover the city that&apos;s alive around us.
             </p>
             <NewsletterForm dark />
           </div>
-          <div className="font-mono text-[9px] text-lt-faint uppercase tracking-[0.15em]">
-            Photography: <span className="text-green">@ejimogu_</span>
+          <div className="font-mono text-[9px] text-white/70 uppercase tracking-[0.15em]">
+            Photography: <span className="text-white">@ejimogu_</span>
           </div>
         </div>
       </section>

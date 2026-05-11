@@ -15,7 +15,6 @@ export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const isDarkHero = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -27,7 +26,7 @@ export default function Nav() {
     setMenuOpen(false);
   }, [pathname]);
 
-  const dark = isDarkHero && !scrolled;
+  const dark = false;
 
   return (
     <nav
