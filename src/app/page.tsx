@@ -11,7 +11,6 @@ export const revalidate = 300;
 export default async function HomePage() {
   const events = await fetchEvents();
   const picks = events.filter((e) => e.pick).slice(0, 3);
-  const heroImg = placeholderImg("Seattle at dusk", 220, 200);
 
   while (picks.length < 3) {
     const next = events.find((e) => !picks.includes(e));
@@ -22,8 +21,19 @@ export default async function HomePage() {
   return (
     <div>
       {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-end relative px-5 md:px-[5vw] xl:px-[60px] pb-[60px]" style={{ background: "var(--dark-bg)" }}>
-        <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ opacity: 0.7 }} />
+      <section className="min-h-screen flex flex-col justify-end relative px-5 md:px-[5vw] xl:px-[60px] pb-[60px] overflow-hidden" style={{ background: "var(--dark-bg)" }}>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/kerry-park-poster.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.7 }}
+        >
+          <source src="/kerry-park.webm" type="video/webm" />
+          <source src="/kerry-park.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(12,12,12,0.6) 0%, rgba(12,12,12,0.95) 80%)" }} />
         <div className="relative max-w-[1400px] mx-auto w-full">
           <div className="mb-10">
