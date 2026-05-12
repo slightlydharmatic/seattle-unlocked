@@ -1,5 +1,6 @@
 import { fetchEvents } from "@/lib/sheets";
-import { EventRow } from "@/components/EventCard";
+import { isPastDate } from "@/lib/dates";
+import type { SEvent } from "@/lib/types";
 import EventsFilter from "./EventsFilter";
 
 export const revalidate = 300;
@@ -11,5 +12,11 @@ export const metadata = {
 
 export default async function EventsPage() {
   const events = await fetchEvents();
-  return <EventsFilter events={events} />;
+  const upcoming: SEvent[] = [];
+  const past: SEvent[] = [];
+  for (const e of events) {
+    if (isPastDate(e.date)) past.push(e);
+    else upcoming.push(e);
+  }
+  return <EventsFilter upcoming={upcoming} past={past} />;
 }

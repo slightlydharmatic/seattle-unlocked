@@ -1,4 +1,4 @@
-import { SHEETS_ID } from "./constants";
+import { SHEETS_ID, SHEETS_GID } from "./constants";
 import type { SEvent } from "./types";
 
 // Fetch events from the public Google Sheet
@@ -6,12 +6,20 @@ import type { SEvent } from "./types";
 // We use the CSV export endpoint which doesn't need an API key
 export async function fetchEvents(): Promise<SEvent[]> {
   try {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEETS_ID}/gviz/tq?tqx=out:json`;
+    const url = `https://docs.google.com/spreadsheets/d/${SHEETS_ID}/gviz/tq?tqx=out:json&gid=${SHEETS_GID}`;
     const res = await fetch(url, { next: { revalidate: 300 } }); // cache 5 min
     const text = await res.text();
 
-    // Google wraps the JSON in a callback, strip it
-    const jsonStr = text.replace(/^.*google\.visualization\.Query\.setResponse\(/, "").replace(/\);?\s*$/, "");
+    // Google wraps the JSON in a callback like "/*O_o*/\ngoogle.visualization.Query.setResponse({...});"
+    // Extract the JSON object by finding the open paren after setResponse and the last close paren.
+    const startMarker = "setResponse(";
+    const startIdx = text.indexOf(startMarker);
+    const endIdx = text.lastIndexOf(")");
+    if (startIdx === -1 || endIdx === -1 || endIdx <= startIdx) {
+      console.error("Sheets response did not match expected gviz format");
+      return getFallbackEvents();
+    }
+    const jsonStr = text.substring(startIdx + startMarker.length, endIdx);
     const data = JSON.parse(jsonStr);
 
     if (!data.table?.rows) return getFallbackEvents();
@@ -19,17 +27,25 @@ export async function fetchEvents(): Promise<SEvent[]> {
     const cols = data.table.cols.map((c: { label: string }) => c.label.toLowerCase().trim());
 
     return data.table.rows
-      .map((row: { c: Array<{ v: string | number | null } | null> }, idx: number) => {
+      .map((row: { c: Array<{ v: string | number | null; f?: string | null } | null> }, idx: number) => {
         const get = (colName: string): string => {
           const i = cols.indexOf(colName.toLowerCase());
           if (i === -1 || !row.c[i]) return "";
-          return String(row.c[i]?.v || "").trim();
+          return String(row.c[i]?.v ?? "").trim();
+        };
+        // Prefer the formatted display value `.f` over the raw `.v` (e.g. "Apr 10, 2026"
+        // instead of the gviz "Date(2026,3,10)" you get for date-typed cells).
+        const getFormatted = (colName: string): string => {
+          const i = cols.indexOf(colName.toLowerCase());
+          if (i === -1 || !row.c[i]) return "";
+          const cell = row.c[i];
+          return String(cell?.f ?? cell?.v ?? "").trim();
         };
 
         return {
           id: get("id") || String(idx + 1),
           title: get("title") || get("event") || get("name"),
-          date: get("date"),
+          date: getFormatted("date"),
           time: get("time"),
           spot: get("spot") || get("venue") || get("location"),
           hood: get("hood") || get("neighborhood") || get("area"),

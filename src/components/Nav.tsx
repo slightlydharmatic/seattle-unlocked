@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { PARTNER_BOOKING_URL } from "@/lib/constants";
 
 const links = [
   { label: "Events", href: "/events" },
@@ -15,6 +16,15 @@ export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  // Pages whose top-of-page background is dark — nav text needs to be LIGHT on these.
+  // Homepage is excluded because its Kerry Park video is bright and the user wants black nav text there.
+  const isDarkHero =
+    pathname === "/partner" ||
+    pathname === "/about" ||
+    /^\/events\/[^/]+$/.test(pathname) ||  // event detail pages
+    /^\/stories\/[^/]+$/.test(pathname);   // story detail pages
+  // On /partner routes we strip nav links and run a focused, minimalist nav.
+  const isPartnerRoute = pathname.startsWith("/partner");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -26,14 +36,16 @@ export default function Nav() {
     setMenuOpen(false);
   }, [pathname]);
 
-  const dark = false;
+  const dark = isDarkHero && !scrolled;
 
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-400"
       style={{
         background: scrolled
-          ? dark ? "rgba(12,12,12,0.95)" : "rgba(242,237,228,0.95)"
+          ? dark
+            ? "rgba(12,12,12,0.95)"
+            : "rgba(242,237,228,0.95)"
           : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
       }}
@@ -41,51 +53,73 @@ export default function Nav() {
       <div className="max-w-[1400px] mx-auto flex items-center justify-between h-14 px-5 md:px-[5vw] xl:px-[60px]">
         {/* Logo */}
         <Link href="/" className="flex items-baseline gap-1 no-underline">
-          <span className={`font-serif italic text-xl ${dark ? "text-lt" : "text-ink"}`}>Seattle</span>
-          <span className="font-mono text-[10px] text-green uppercase tracking-[0.15em]">Unlocked</span>
+          <span className={`font-serif italic text-xl ${dark ? "text-lt" : "text-ink"}`}>
+            Seattle
+          </span>
+          <span className="font-mono font-bold text-[10px] text-green uppercase tracking-[0.15em]">
+            Unlocked
+          </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-7">
-          {links.map(({ label, href }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`font-mono text-[10px] uppercase tracking-[0.08em] no-underline transition-colors ${
-                pathname === href || pathname.startsWith(href + "/")
-                  ? "text-green"
-                  : dark ? "text-lt-faint hover:text-lt-dim" : "text-dim hover:text-ink"
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
+        {/* On /partner routes: minimalist — single right-side CTA, no link list */}
+        {isPartnerRoute ? (
+          <Link
+            href={PARTNER_BOOKING_URL}
+            className={`font-mono font-bold text-[10px] uppercase tracking-[0.12em] no-underline px-5 py-2.5 transition-all ${
+              dark
+                ? "text-white bg-green border border-green hover:brightness-110"
+                : "text-white bg-green border border-green hover:brightness-110"
+            }`}
+          >
+            Book a call
+          </Link>
+        ) : (
+          <>
+            {/* Desktop link list */}
+            <div className="hidden md:flex items-center gap-7">
+              {links.map(({ label, href }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`font-mono font-bold text-[10px] uppercase tracking-[0.08em] no-underline transition-colors ${
+                    pathname === href || pathname.startsWith(href + "/")
+                      ? "text-green"
+                      : dark
+                      ? "text-lt-faint hover:text-lt-dim"
+                      : "text-dim hover:text-ink"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden flex flex-col gap-[5px] p-2 bg-transparent border-none cursor-pointer"
-          aria-label="Menu"
-        >
-          {[0, 1, 2].map(i => (
-            <span
-              key={i}
-              className="block w-5 h-[1.5px] transition-all"
-              style={{ background: dark ? "var(--lt)" : "var(--ink)" }}
-            />
-          ))}
-        </button>
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden flex flex-col gap-[5px] p-2 bg-transparent border-none cursor-pointer"
+              aria-label="Menu"
+            >
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  className="block w-5 h-[1.5px] transition-all"
+                  style={{ background: dark ? "var(--lt)" : "var(--ink)" }}
+                />
+              ))}
+            </button>
+          </>
+        )}
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
+      {/* Mobile menu — only on non-partner routes */}
+      {menuOpen && !isPartnerRoute && (
         <div className="md:hidden bg-bg border-t border-faint px-5 pb-6 pt-4">
           {links.map(({ label, href }) => (
             <Link
               key={href}
               href={href}
-              className={`block font-mono text-xs uppercase tracking-[0.08em] py-3 no-underline border-b border-faint ${
+              className={`block font-mono font-bold text-xs uppercase tracking-[0.08em] py-3 no-underline border-b border-faint ${
                 pathname === href ? "text-green" : "text-ink"
               }`}
             >

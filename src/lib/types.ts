@@ -36,5 +36,6 @@ export interface TeamSchedule {
   venue: string;
   color: string;
   accent: string;
+  logo: string;
   games: Game[];
 }
