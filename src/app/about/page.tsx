@@ -102,40 +102,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* WHO'S BEHIND IT */}
-      <section className="max-w-[820px] mx-auto px-5 md:px-[5vw] xl:px-[60px] py-24">
-        <h2
-          className="font-serif italic text-ink leading-[1.05] mb-10"
-          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
-        >
-          Who&apos;s behind it.
-        </h2>
-
-        {/* Founder card */}
-        <div className="p-8 border border-faint flex gap-6 items-start bg-bg">
-          <div className="w-14 h-14 rounded-full shrink-0 flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--blue), var(--green))" }}>
-            <span className="font-serif text-2xl italic text-white">D</span>
-          </div>
-          <div>
-            <div className="font-serif text-xl italic text-ink">Dharma</div>
-            <div className="font-sans font-bold text-[10px] text-dim uppercase tracking-[0.14em] mb-3">Founder</div>
-            <p className="font-sans text-[15px] text-ink leading-[1.7] italic m-0">
-              &ldquo;I moved to Seattle and felt the freeze myself. So I built the thing I wished existed.&rdquo;
-            </p>
-          </div>
-        </div>
-
-        {/* Photographer card */}
-        <div className="mt-6 p-8 border border-faint bg-bg">
-          <div className="font-sans font-bold text-[10px] text-dim uppercase tracking-[0.14em] mb-3">Photographer</div>
-          <div className="font-serif text-xl italic text-ink">
-            Ej Acholonu <span className="font-sans font-bold text-[11px] text-green">@ejimogu_</span>
-          </div>
-          <p className="font-sans text-sm text-ink leading-relaxed mt-2 m-0">
-            Nigerian-American digital creator. Landscape, lifestyle, and travel photography across the PNW. The reason this site looks the way it does.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { SEvent } from "@/lib/types";
 import { placeholderImg } from "@/lib/sheets";
+import { formatDateShort } from "@/lib/dates";
 
 export function BigCard({ event }: { event: SEvent }) {
   const [hover, setHover] = useState(false);
@@ -55,12 +56,12 @@ export function EventRow({ event, idx }: { event: SEvent; idx: number }) {
     >
       <span className="font-mono text-[11px] text-faint">{String(idx).padStart(2, "0")}</span>
       <div>
-        <h4 className={`font-serif text-[22px] font-normal m-0 leading-[1.2] italic transition-colors ${hover ? "text-blue" : "text-ink"}`}>{event.title}</h4>
-        <div className="font-mono text-[10px] text-dim mt-1 uppercase tracking-[0.08em]">{event.spot} / {event.hood}</div>
+        <h4 className={`font-sans text-[22px] md:text-[24px] font-bold m-0 leading-[1.25] tracking-[-0.01em] transition-colors ${hover ? "text-blue" : "text-ink"}`}>{event.title}</h4>
+        <div className="font-sans text-[14px] text-dim mt-1">{event.spot}{event.hood ? ` · ${event.hood}` : ""}</div>
       </div>
-      <div className="text-right">
-        <div className="font-mono text-xs text-ink">{event.date}</div>
-        <div className="font-mono text-[10px] text-dim">{event.time}</div>
+      <div className="text-right whitespace-nowrap">
+        <div className="font-sans text-[17px] text-ink">{formatDateShort(event.date)}</div>
+        {event.time && <div className="font-sans text-[14px] text-dim mt-0.5">{event.time}</div>}
       </div>
     </Link>
   );
