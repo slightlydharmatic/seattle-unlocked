@@ -6,7 +6,7 @@ const MONTH_NAMES: Record<string, number> = {
 // Parses event date strings into { year, month, day }. Returns null if unparseable.
 // Handles: "Apr 10", "April 10, 2026", "4/10/2026", "2026-04-10", and gviz "Date(2026,3,10)"
 // (gviz emits this when a sheet cell is typed as Date — month is 0-indexed in that form).
-function parseEventDate(s: string): { year: number; month: number; day: number } | null {
+export function parseEventDate(s: string): { year: number; month: number; day: number } | null {
   if (!s) return null;
   const str = s.trim();
 
@@ -40,6 +40,12 @@ function parseEventDate(s: string): { year: number; month: number; day: number }
   }
 
   return null;
+}
+
+export function formatDateShort(dateStr: string): string {
+  const parsed = parseEventDate(dateStr);
+  if (!parsed) return dateStr;
+  return `${parsed.month}/${parsed.day}/${parsed.year}`;
 }
 
 // True if the event date is strictly before today. Unparseable dates are treated as upcoming
