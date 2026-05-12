@@ -1,4 +1,5 @@
 import { fetchEvents } from "@/lib/sheets";
+import { isPastDate } from "@/lib/dates";
 import { STATS } from "@/lib/constants";
 import ThisWeekInSeattle from "@/components/ThisWeekInSeattle";
 import NewsletterForm from "@/components/NewsletterForm";
@@ -7,6 +8,7 @@ export const revalidate = 300;
 
 export default async function HomePage() {
   const events = await fetchEvents();
+  const upcomingEvents = events.filter((e) => !isPastDate(e.date));
 
   return (
     <div>
@@ -47,7 +49,7 @@ export default async function HomePage() {
       </section>
 
       {/* THIS WEEK IN SEATTLE */}
-      <ThisWeekInSeattle events={events} />
+      <ThisWeekInSeattle events={upcomingEvents} />
 
       {/* STATS */}
       <section className="flex flex-wrap border-y border-faint bg-bg">
