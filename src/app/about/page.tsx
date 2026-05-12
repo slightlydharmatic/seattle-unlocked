@@ -40,7 +40,7 @@ export default function AboutPage() {
         >
           The good stuff is hard to find.
         </h2>
-        <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-10">
+        <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-16">
           <p className="m-0">
             Seattle&apos;s best events are scattered across a dozen sites, group chats, coffee bar postings, and Strava clubs.
           </p>
