@@ -40,7 +40,7 @@ export default function AboutPage() {
         >
           The good stuff is hard to find.
         </h2>
-        <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-6">
+        <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-10">
           <p className="m-0">
             Seattle&apos;s best events are scattered across a dozen sites, group chats, coffee bar postings, and Strava clubs.
           </p>
@@ -68,7 +68,7 @@ export default function AboutPage() {
                 Hand-picked
               </h3>
               <p className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.6] m-0">
-                No algorithm. No scraping. No &ldquo;20 things to do this weekend&rdquo; filler.
+                No algorithm, scraping or &lsquo;20 things to do this weekend&rsquo; filler.
               </p>
             </div>
             <div>
