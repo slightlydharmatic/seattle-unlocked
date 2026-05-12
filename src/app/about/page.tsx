@@ -24,10 +24,10 @@ export default function AboutPage() {
             className="font-serif italic font-normal text-white leading-[1.0] mt-5 mb-6"
             style={{ fontSize: "clamp(48px, 7vw, 96px)" }}
           >
-            Seattle is one of the great cities to be outside in.
+            Seattle is the place to be.
           </h1>
           <p className="font-serif italic text-white/95 max-w-[640px] text-xl md:text-2xl leading-snug m-0">
-            You can be on a trail in an hour. At a market every other street. Doing free yoga in a park.
+            But, how easy is it to discover what&apos;s out there?
           </p>
         </div>
       </section>
@@ -42,10 +42,10 @@ export default function AboutPage() {
         </h2>
         <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-6">
           <p className="m-0">
-            Seattle&apos;s best events are scattered across a dozen Instagrams, group chats, and Strava clubs.
+            Seattle&apos;s best events are scattered across a dozen sites, group chats, coffee bar postings, and Strava clubs.
           </p>
           <p className="m-0">
-            Algorithms feed you what&apos;s popular, not what&apos;s good. The runs that turn into beers, the art nights in coffee shops, the cultural events that fill you with wonder — they never make it onto Eventbrite.
+            The runs that turn into beers, the art nights in coffee shops, the cultural events that fill you with wonder&hellip; they never make it onto Eventbrite.
           </p>
           <p className="m-0">
             Seattle Unlocked is a hand-picked rundown of things worth leaving the house for, with a bias toward outside and a bias toward places where you might talk to someone.
