@@ -1,58 +1,118 @@
 export const metadata = {
   title: "About - Seattle Unlocked",
-  description: "A short, hand-picked rundown of things worth leaving the house for in Seattle.",
+  description: "A hand-picked rundown of things worth leaving the house for in Seattle.",
 };
 
 export default function AboutPage() {
   return (
     <div>
-      {/* Dark hero */}
-      <div className="relative pt-[140px] pb-20 px-5 md:px-[5vw] xl:px-[60px]" style={{ background: "var(--dark-bg)" }}>
-        <div className="max-w-[900px] mx-auto">
+      {/* HERO - Space Needle background */}
+      <section className="min-h-[85vh] flex flex-col relative px-5 md:px-[5vw] xl:px-[60px] pt-24 pb-[60px] overflow-hidden" style={{ background: "var(--dark-bg)" }}>
+        <img
+          src="/space-needle.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 65%)" }} />
+
+        <div className="relative flex-1 flex flex-col items-center justify-center text-center max-w-[900px] mx-auto w-full" style={{ textShadow: "0 4px 40px rgba(0,0,0,0.7)" }}>
           <span className="font-sans font-bold text-[11px] text-green uppercase tracking-[0.18em]">
             About us
           </span>
           <h1
-            className="font-serif italic font-normal text-lt leading-[1.0] mt-4 mb-4"
+            className="font-serif italic font-normal text-white leading-[1.0] mt-5 mb-6"
             style={{ fontSize: "clamp(48px, 7vw, 96px)" }}
           >
             Seattle is one of the great cities to be outside in.
           </h1>
-          <p className="font-sans text-base md:text-lg text-lt-dim leading-relaxed max-w-[600px] m-0">
-            You can be on a trail in an hour, at a market every other street, and doing free yoga in a park. The city is full of people who actually do this stuff, and they&apos;re easier to find than people think.
+          <p className="font-serif italic text-white/95 max-w-[640px] text-xl md:text-2xl leading-snug m-0">
+            You can be on a trail in an hour. At a market every other street. Doing free yoga in a park.
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Body */}
-      <div className="max-w-[820px] mx-auto px-5 md:px-[5vw] xl:px-[60px] pt-16 pb-20">
-        <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-7">
+      {/* THE PREMISE */}
+      <section className="max-w-[760px] mx-auto px-5 md:px-[5vw] xl:px-[60px] py-24">
+        <h2
+          className="font-serif italic text-ink leading-[1.05] mb-8"
+          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+        >
+          The good stuff is hard to find.
+        </h2>
+        <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-6">
           <p className="m-0">
-            We started this because we kept hearing the same thing from friends: <em>I want to do more, I just don&apos;t know where to look.</em> The good events were out there, scattered across a dozen Instagrams, group chats, and Strava clubs. So we started keeping a list. The runs that turn into beers, the art nights found in coffee shops, and the cultural events that fill you with wonder. The small things happening in parks that never make it onto Eventbrite.
+            Seattle&apos;s best events are scattered across a dozen Instagrams, group chats, and Strava clubs.
           </p>
           <p className="m-0">
-            At some point the list got long enough that it seemed worth sharing.
+            Algorithms feed you what&apos;s popular, not what&apos;s good. The runs that turn into beers, the art nights in coffee shops, the cultural events that fill you with wonder — they never make it onto Eventbrite.
           </p>
           <p className="m-0">
-            That&apos;s all this is: a short, hand-picked rundown of things worth leaving the house for, with a bias toward outside and a bias toward places where you might talk to someone.
+            Seattle Unlocked is a hand-picked rundown of things worth leaving the house for, with a bias toward outside and a bias toward places where you might talk to someone.
           </p>
         </div>
+      </section>
 
-        {/* Honest things */}
-        <div className="mt-14">
-          <h2 className="font-serif italic text-2xl md:text-3xl text-ink mb-5">A few honest things</h2>
-          <ul className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-4 list-disc pl-5">
-            <li>
-              We pick everything by hand. No algorithm, no scraping, no &ldquo;20 things to do this weekend&rdquo; filler.
-            </li>
-            <li>
-              We&apos;re a small team. We try to get back to every DM and comment, but sometimes it gets a bit much. If you reach out at <a href="mailto:info@seattleunlocked.com" className="text-green underline">info@seattleunlocked.com</a>, we&apos;d love to hear from you.
-            </li>
-          </ul>
+      {/* WHAT MAKES IT DIFFERENT */}
+      <section className="bg-bg border-y border-faint">
+        <div className="max-w-[1100px] mx-auto px-5 md:px-[5vw] xl:px-[60px] py-24">
+          <h2
+            className="font-serif italic text-ink leading-[1.05] mb-14 text-center"
+            style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+          >
+            What makes us different.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 md:gap-y-12">
+            <div>
+              <h3 className="font-sans font-bold text-[12px] text-green uppercase tracking-[0.18em] mb-3">
+                Hand-picked
+              </h3>
+              <p className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.6] m-0">
+                No algorithm. No scraping. No &ldquo;20 things to do this weekend&rdquo; filler.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-sans font-bold text-[12px] text-green uppercase tracking-[0.18em] mb-3">
+                Built local
+              </h3>
+              <p className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.6] m-0">
+                Picked by people who actually go to these things themselves.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-sans font-bold text-[12px] text-green uppercase tracking-[0.18em] mb-3">
+                Outside-leaning
+              </h3>
+              <p className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.6] m-0">
+                A bias toward trails, parks, water, and places where you might talk to someone.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-sans font-bold text-[12px] text-green uppercase tracking-[0.18em] mb-3">
+                Small team
+              </h3>
+              <p className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.6] m-0">
+                We try to reply to every DM. Reach us at{" "}
+                <a href="mailto:info@seattleunlocked.com" className="text-green underline">
+                  info@seattleunlocked.com
+                </a>.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* WHO'S BEHIND IT */}
+      <section className="max-w-[820px] mx-auto px-5 md:px-[5vw] xl:px-[60px] py-24">
+        <h2
+          className="font-serif italic text-ink leading-[1.05] mb-10"
+          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+        >
+          Who&apos;s behind it.
+        </h2>
 
         {/* Founder card */}
-        <div className="mt-14 p-8 border border-faint flex gap-6 items-start bg-bg">
+        <div className="p-8 border border-faint flex gap-6 items-start bg-bg">
           <div className="w-14 h-14 rounded-full shrink-0 flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--blue), var(--green))" }}>
             <span className="font-serif text-2xl italic text-white">D</span>
           </div>
@@ -75,7 +135,7 @@ export default function AboutPage() {
             Nigerian-American digital creator. Landscape, lifestyle, and travel photography across the PNW. The reason this site looks the way it does.
           </p>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
