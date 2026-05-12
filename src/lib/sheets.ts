@@ -27,17 +27,25 @@ export async function fetchEvents(): Promise<SEvent[]> {
     const cols = data.table.cols.map((c: { label: string }) => c.label.toLowerCase().trim());
 
     return data.table.rows
-      .map((row: { c: Array<{ v: string | number | null } | null> }, idx: number) => {
+      .map((row: { c: Array<{ v: string | number | null; f?: string | null } | null> }, idx: number) => {
         const get = (colName: string): string => {
           const i = cols.indexOf(colName.toLowerCase());
           if (i === -1 || !row.c[i]) return "";
-          return String(row.c[i]?.v || "").trim();
+          return String(row.c[i]?.v ?? "").trim();
+        };
+        // Prefer the formatted display value `.f` over the raw `.v` (e.g. "Apr 10, 2026"
+        // instead of the gviz "Date(2026,3,10)" you get for date-typed cells).
+        const getFormatted = (colName: string): string => {
+          const i = cols.indexOf(colName.toLowerCase());
+          if (i === -1 || !row.c[i]) return "";
+          const cell = row.c[i];
+          return String(cell?.f ?? cell?.v ?? "").trim();
         };
 
         return {
           id: get("id") || String(idx + 1),
           title: get("title") || get("event") || get("name"),
-          date: get("date"),
+          date: getFormatted("date"),
           time: get("time"),
           spot: get("spot") || get("venue") || get("location"),
           hood: get("hood") || get("neighborhood") || get("area"),

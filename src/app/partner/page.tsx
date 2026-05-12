@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import CalendlyButton from "@/components/CalendlyButton";
 import {
   STATS,
   SHORT_MISSION,
@@ -42,12 +43,12 @@ export default function PartnerPage() {
               A 69K-strong community and 955K monthly reach of folks who actually show up.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                href={PARTNER_BOOKING_URL}
-                className="w-full sm:w-auto font-mono text-[11px] font-bold text-white bg-green border border-green px-7 py-4 no-underline uppercase tracking-[0.12em] hover:brightness-110 transition-all text-center min-h-[48px] flex items-center justify-center"
+              <CalendlyButton
+                url={PARTNER_BOOKING_URL}
+                className="w-full sm:w-auto font-mono text-[11px] font-bold text-white bg-green border border-green px-7 py-4 no-underline uppercase tracking-[0.12em] hover:brightness-110 transition-all text-center min-h-[48px] flex items-center justify-center cursor-pointer"
               >
                 Book a 15-min call
-              </Link>
+              </CalendlyButton>
               <Link
                 href="#case-study"
                 className="w-full sm:w-auto font-mono text-[11px] font-bold text-lt bg-transparent border border-lt-faint px-7 py-4 no-underline uppercase tracking-[0.12em] hover:border-lt transition-all text-center min-h-[48px] flex items-center justify-center"
@@ -259,12 +260,12 @@ export default function PartnerPage() {
             <p className="font-sans text-base text-dim leading-relaxed mb-8 flex-1">
               For a newsletter feature, solo post, Reel, or full collab.
             </p>
-            <Link
-              href={PARTNER_BOOKING_URL}
-              className="inline-block self-start font-mono font-bold text-[11px] text-white bg-blue border border-blue px-8 py-4 no-underline uppercase tracking-[0.14em] hover:brightness-110 transition-all min-h-[48px] flex items-center"
+            <CalendlyButton
+              url={PARTNER_BOOKING_URL}
+              className="self-start font-mono font-bold text-[11px] text-white bg-blue border border-blue px-8 py-4 no-underline uppercase tracking-[0.14em] hover:brightness-110 transition-all min-h-[48px] flex items-center cursor-pointer"
             >
               Book a call &rarr;
-            </Link>
+            </CalendlyButton>
           </div>
         </div>
 

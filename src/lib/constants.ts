@@ -18,8 +18,8 @@ export const C = {
 export const BEEHIIV_URL = "https://seattle-for-frees-newsletter.beehiiv.com";
 export const BEEHIIV_EMBED_URL = "https://seattle-for-frees-newsletter.beehiiv.com/subscribe";
 
-// Booking link (replace with your real Calendly / Tally / etc.)
-export const PARTNER_BOOKING_URL = "mailto:hello@seattleunlocked.com?subject=Partner%20inquiry";
+// Booking link — opened in a Calendly popup widget via CalendlyButton.
+export const PARTNER_BOOKING_URL = "https://calendly.com/seattleunlocked-info/30min";
 
 // Round-up form submission endpoint. Replace with your Formspree / Tally / Google Sheets webhook.
 export const ROUND_UP_FORM_ACTION = "https://formspree.io/f/REPLACE_ME";

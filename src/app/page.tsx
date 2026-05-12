@@ -13,7 +13,7 @@ export default async function HomePage() {
   return (
     <div>
       {/* HERO - Kerry Park video */}
-      <section className="min-h-screen flex flex-col justify-between relative px-5 md:px-[5vw] xl:px-[60px] pt-24 pb-[60px] overflow-hidden" style={{ background: "var(--dark-bg)" }}>
+      <section className="min-h-screen flex flex-col relative px-5 md:px-[5vw] xl:px-[60px] pt-24 pb-[60px] overflow-hidden" style={{ background: "var(--dark-bg)" }}>
         <video
           autoPlay
           muted
@@ -25,24 +25,28 @@ export default async function HomePage() {
           <source src="/kerry-park.webm" type="video/webm" />
           <source src="/kerry-park.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.55) 100%)" }} />
-        <div className="relative max-w-[1400px] mx-auto w-full flex justify-end" style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}>
-          <div className="text-right">
-            <h1 className="font-serif italic font-normal text-white leading-[0.95] m-0" style={{ fontSize: "clamp(56px, 10vw, 140px)" }}>Seattle</h1>
-            <div className="flex items-baseline gap-4 flex-wrap justify-end">
-              <span className="font-mono text-[11px] text-white/80 uppercase tracking-[0.12em]">Free events &amp; local stories</span>
-              <h1 className="font-serif italic font-normal text-white leading-[0.95] m-0" style={{ fontSize: "clamp(56px, 10vw, 140px)" }}>Unlocked</h1>
-            </div>
-          </div>
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.65) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 65%)" }} />
+
+        {/* Centered headline */}
+        <div className="relative flex-1 flex flex-col items-center justify-center text-center" style={{ textShadow: "0 4px 40px rgba(0,0,0,0.7)" }}>
+          <h1
+            className="text-white leading-[0.95] m-0 tracking-[-0.01em]"
+            style={{ fontFamily: "'DM Serif Display', 'Instrument Serif', Georgia, serif", fontSize: "clamp(72px, 14vw, 200px)" }}
+          >
+            Seattle Unlocked
+          </h1>
+          <p className="font-serif italic text-white/95 mt-6 max-w-[640px] text-xl md:text-2xl lg:text-3xl leading-snug">
+            Let&apos;s get to know the city that&apos;s alive around us.
+          </p>
         </div>
+
+        {/* Bottom: newsletter + credit */}
         <div className="relative max-w-[1400px] mx-auto w-full" style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-end mb-12">
-            <p className="font-sans text-base text-white/90 leading-relaxed max-w-[380px] m-0">
-              Let&apos;s discover the city that&apos;s alive around us.
-            </p>
-            <NewsletterForm dark />
+          <div className="flex justify-center mb-10">
+            <NewsletterForm dark className="w-full max-w-[460px]" />
           </div>
-          <div className="font-mono text-[9px] text-white/70 uppercase tracking-[0.15em]">
+          <div className="font-mono text-[9px] text-white/70 uppercase tracking-[0.15em] text-center">
             Photography: <span className="text-white">@ejimogu_</span>
           </div>
         </div>
