@@ -40,14 +40,14 @@ export default function AboutPage() {
         >
           The good stuff is hard to find.
         </h2>
-        <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-16">
-          <p className="m-0">
+        <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7]">
+          <p style={{ marginTop: 0, marginBottom: "2.5em" }}>
             Seattle&apos;s best events are scattered across a dozen sites, group chats, coffee bar postings, and Strava clubs.
           </p>
-          <p className="m-0">
+          <p style={{ marginTop: 0, marginBottom: "2.5em" }}>
             The runs that turn into beers, the art nights in coffee shops, the cultural events that fill you with wonder&hellip; they never make it onto Eventbrite.
           </p>
-          <p className="m-0">
+          <p style={{ margin: 0 }}>
             Seattle Unlocked is a hand-picked rundown of things worth leaving the house for, with a bias toward outside and a bias toward places where you might talk to someone.
           </p>
         </div>
@@ -92,10 +92,10 @@ export default function AboutPage() {
                 Small team
               </h3>
               <p className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.6] m-0">
-                We try to reply to every DM. Reach us at{" "}
+                We love our community and want to hear from you! Reach us at{" "}
                 <a href="mailto:info@seattleunlocked.com" className="text-green underline">
                   info@seattleunlocked.com
-                </a>.
+                </a>
               </p>
             </div>
           </div>
