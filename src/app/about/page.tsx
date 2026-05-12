@@ -1,6 +1,6 @@
 export const metadata = {
   title: "About - Seattle Unlocked",
-  description: "We're making Seattle more neighborly, one event and one walk-in at a time.",
+  description: "A short, hand-picked rundown of things worth leaving the house for in Seattle.",
 };
 
 export default function AboutPage() {
@@ -16,10 +16,10 @@ export default function AboutPage() {
             className="font-serif italic font-normal text-lt leading-[1.0] mt-4 mb-4"
             style={{ fontSize: "clamp(48px, 7vw, 96px)" }}
           >
-            We&apos;re making Seattle more neighborly.
+            Seattle is one of the great cities to be outside in.
           </h1>
           <p className="font-sans text-base md:text-lg text-lt-dim leading-relaxed max-w-[600px] m-0">
-            Our job is simple. We find the good stuff, then we make sure everyone in the city knows about it.
+            You can be on a trail in an hour, at a market every other street, and doing free yoga in a park. The city is full of people who actually do this stuff, and they&apos;re easier to find than people think.
           </p>
         </div>
       </div>
@@ -28,17 +28,27 @@ export default function AboutPage() {
       <div className="max-w-[820px] mx-auto px-5 md:px-[5vw] xl:px-[60px] pt-16 pb-20">
         <div className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-7">
           <p className="m-0">
-            The Seattle Freeze is real. It&apos;s the wall between you and your neighbors. The hellos that never become hangouts. The good things you never quite find.
+            We started this because we kept hearing the same thing from friends: <em>I want to do more, I just don&apos;t know where to look.</em> The good events were out there, scattered across a dozen Instagrams, group chats, and Strava clubs. So we started keeping a list. The runs that turn into beers, the art nights found in coffee shops, and the cultural events that fill you with wonder. The small things happening in parks that never make it onto Eventbrite.
           </p>
           <p className="m-0">
-            We started Seattle Unlocked to fix that. We find the events, the local businesses, and the moments worth showing up for. Then we make sure everyone in this city knows about them.
+            At some point the list got long enough that it seemed worth sharing.
           </p>
           <p className="m-0">
-            We believe cities get warmer when people actually meet. Every Seattleite should know what&apos;s happening in their own backyard. Every spot worth supporting should be impossible to miss.
+            That&apos;s all this is: a short, hand-picked rundown of things worth leaving the house for, with a bias toward outside and a bias toward places where you might talk to someone.
           </p>
-          <p className="m-0">
-            69K people are already with us. The good stuff is happening here. We make sure you find it.
-          </p>
+        </div>
+
+        {/* Honest things */}
+        <div className="mt-14">
+          <h2 className="font-serif italic text-2xl md:text-3xl text-ink mb-5">A few honest things</h2>
+          <ul className="font-sans text-[17px] md:text-[19px] text-ink leading-[1.7] space-y-4 list-disc pl-5">
+            <li>
+              We pick everything by hand. No algorithm, no scraping, no &ldquo;20 things to do this weekend&rdquo; filler.
+            </li>
+            <li>
+              We&apos;re a small team. We try to get back to every DM and comment, but sometimes it gets a bit much. If you reach out at <a href="mailto:info@seattleunlocked.com" className="text-green underline">info@seattleunlocked.com</a>, we&apos;d love to hear from you.
+            </li>
+          </ul>
         </div>
 
         {/* Founder card */}
